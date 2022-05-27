@@ -59,8 +59,12 @@ router.post("/users/logoutAll", auth, async (req, res) => {
 });
 
 //Getting one profile
-router.get("/users/me", auth, async (req, res) => {
-  res.send(req.user); // req.user from auth(auth.js)
+router.get("/users/me", auth, (req, res) => {
+  try {
+    res.send(req.user); // req.user from auth(auth.js)
+  } catch (error) {
+    res.send(error);
+  }
 });
 //Getting one specific user
 // router.get("/users/:id", async (req, res) => {
